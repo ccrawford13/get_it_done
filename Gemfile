@@ -41,6 +41,7 @@ group :development, :test do
   gem 'capybara'
   # Test Factories
   gem 'factory_girl_rails'
+  gem 'database_cleaner'
   # Better Errors Messages
   gem 'better_errors'
   gem 'binding_of_caller'
