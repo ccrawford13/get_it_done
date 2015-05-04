@@ -18,100 +18,90 @@ require 'rails_helper'
 
     context "when user exists" do
       subject(:user) { create(:user) }
-
-      xit "#home page should be users#show" do
-        expect( current_path ).to eq(users(current_user))
+      before do
+        click_link "Sign In"
+        fill_in "Email", with: user.email
+        fill_in "Password", with: user.password
+        click_button "Sign In"
       end
 
-      xit "shows sign-out link" do
-        expect( page ).to have_content "Sign Out"
+      it "shows #my_lists link" do
+        # Sign in Redirects to user_path(user)
+        visit root_path
+        expect( page ).to have_link "My Lists"
       end
 
-      it "sign-up navigates to sign-up page" do
-        click_button "Sign Up"
-        expect( current_path ).to eq(new_user_registration_path)
+      it "shows link to sign-out" do
+        visit root_path
+        expect( page ).to have_link "Sign Out"
+      end
+
+      it "hides link to sign-up" do
+        expect( page ).not_to have_content "Sign Up"
+      end
+
+      it "hides link to sign-in" do
+        expect( page ).not_to have_content "Sign In"
       end
     end
   end
 
-  describe "User sign up" do
+  describe "User sign-in" do
+    subject(:user) { create(:user) }
     before do
       visit root_path
-      click_link "Sign Up"
+      click_link "Sign In"
     end
 
-    context "successful sign up" do
-      it "is valid with correct credentials" do
-        sign_up_credentials
-        expect( page ).to have_content "Welcome"
-        expect( current_path).to eq "users"
-      end
+    context "successful sign-in" do
 
-      it "sends confirmation email" do
-        sign_up_credentials
-        expect( page ).to have_content "A message with a confirmation link has been sent"
+      it "redirects to users#show" do
+        fill_in "Email", with: user.email
+        fill_in "Password", with: user.password
+        click_button "Sign In"
+        expect( current_path ).to eq (user_path(user))
       end
     end
 
-    context "unsuccessful sign up" do
-      it "requires first name" do
-        fill_in "Last name", with: "Smith"
-        fill_in "Email", with: "john@example.com"
-        fill_in "Password", with: "helloworld"
-        fill_in "Password confirmation", with: "helloworld"
-        click_button "Sign Up"
-        expect( page ).to have_content "First name can't be blank"
+    context "unsuccessful sign-in" do
+
+      it "requires confirmed user" do
+        user.update_attributes(confirmed_at: nil)
+        fill_in "Email", with: user.email
+        fill_in "Password", with: user.password
+        click_button "Sign In"
+        expect( page ).to have_content "You have to confirm your email address before continuing"
       end
 
-      it "requires last name" do
-        fill_in "First name", with: "John"
-        fill_in "Email", with: "john@example.com"
-        fill_in "Password", with: "helloworld"
-        fill_in "Password confirmation", with: "helloworld"
-        click_button "Sign Up"
-        expect( page ).to have_content "Last name can't be blank"
+      it "requires correct email" do
+        fill_in "Email", with: "notuseremail"
+        fill_in "Password", with: user.password
+        click_button "Sign In"
+        expect( page ).to have_content "Invalid email or password"
       end
 
-      it "requires valid email" do
-        fill_in "Email", with: "john@example"
-        fill_in "Password", with: "helloworld"
-        fill_in "Password confirmation", with: "helloworld"
-        click_button "Sign Up"
-        expect( page ).to have_content "Email is invalid"
-      end
-
-      it "requires valid password" do
-        fill_in "Email", with: "john@example.com"
-        fill_in "Password", with: "world"
-        fill_in "Password confirmation", with: "world"
-        click_button "Sign Up"
-        expect( page ).to have_content "Password is too short"
-      end
-
-      it "requires matching passwords" do
-        fill_in "Email", with: "john@example.com"
-        fill_in "Password", with: "hellowor"
-        fill_in "Password confirmation", with: "helloworld"
-        click_button "Sign Up"
-        expect( page ).to have_content "Password confirmation doesn't match Password"
+       it "requires correct password" do
+        fill_in "Email", with: user.email
+        fill_in "Password", with: "notuserpassword"
+        click_button "Sign In"
+        expect( page ).to have_content "Invalid email or password"
       end
     end
   end
 
-def sign_up_credentials
-  fill_in "First name", with: "John"
-  fill_in "Last name", with: "Smith"
-  fill_in "Email", with: "john@example.com"
-  fill_in "Password", with: "helloworld"
-  fill_in "Password confirmation", with: "helloworld"
-  click_button "Sign Up"
-end
+  describe "User sign-out" do
+    let(:user) { create(:user) }
+    before do
+      visit root_path
+      click_link "Sign In"
+      fill_in "Email", with: user.email
+      fill_in "Password", with: user.password
+      click_button "Sign In"
+    end
 
-
-
-
-
-    
-
-
-
+    it "redirects to root_path" do
+      visit root_path
+      click_link "Sign Out"
+      expect( current_path ).to eq root_path
+    end
+  end

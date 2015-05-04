@@ -4,8 +4,12 @@
     .intro-text
       .intro-lead-in Welcome to Productivity
       .intro-heading Ready to Get It Done?
-      = link_to "Sign Up", new_user_registration_path, class: 'btn btn-xl'
-      = link_to "Sign In", new_user_session_path, class: 'btn btn-xl'
+      - if current_user
+        = link_to "My Lists", user_path(current_user), class: 'btn btn-xl'
+        = link_to "Sign Out", destroy_user_session_path, class: 'btn btn-xl', method: :delete
+      - else
+        = link_to "Sign Up", new_user_registration_path, class: 'btn btn-xl'
+        = link_to "Sign In", new_user_session_path, class: 'btn btn-xl'
 / Services Section
 %section#services
   .container
