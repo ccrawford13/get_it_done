@@ -26,6 +26,10 @@ gem 'haml'
 gem 'bootstrap-sass'
 # Faker for seeding Dev Env
 gem 'faker'
+# Font-Awesome 
+gem 'font-awesome-sass'
+# Figaro for ENV variables
+gem 'figaro'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -41,6 +45,7 @@ group :development, :test do
   gem 'capybara'
   # Test Factories
   gem 'factory_girl_rails'
+  gem 'database_cleaner'
   # Better Errors Messages
   gem 'better_errors'
   gem 'binding_of_caller'
