@@ -26,6 +26,10 @@ gem 'haml'
 gem 'bootstrap-sass'
 # Faker for seeding Dev Env
 gem 'faker'
+# Font-Awesome 
+gem 'font-awesome-sass'
+# Figaro for ENV variables
+gem 'figaro'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
