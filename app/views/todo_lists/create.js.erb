@@ -1,0 +1,6 @@
+<% if @todo_list.valid? %>
+   $('.js-todo-list').prepend("<%= escape_javascript(render(@todo_list)) %>");
+   $('.new-todo-list').html("<%= escape_javascript(render partial: 'todo_lists/form', locals: { user: @user, todo_list: @todo_list }) %>");
+ <% else %>
+   $('.new-todo-list').prepend("<div class='alert alert-danger'> <%= flash[:error] = "Error Creating List. Please Try Again" %> </div");
+ <% end %>

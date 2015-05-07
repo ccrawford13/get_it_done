@@ -1,0 +1,9 @@
+= div_for(todo_list, class: 'container', id: "list-#{todo_list.id}") do
+  .row
+    .container
+      .col-md-8.col-md-offset-2.todo-cont
+        .col-md-6
+          %h4= todo_list.title
+        .col-md-4.col-md-offset-8
+          %p.text-muted= todo_list.created_at
+    

@@ -14,8 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap
-//= require_tree .
-//= require classie
 //= require agency
+//= require cbpAnimatedHeader
 //= require classie
-//= cbpAnimatedHeader
+//= require jqBootstrapValidation
+

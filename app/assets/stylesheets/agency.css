@@ -68,6 +68,26 @@ h6 {
     background-color: #222;
 }
 
+.todo-cont h4 {
+    padding-top: 1.5em;
+}
+
+.todo-cont {
+    border-color: #fed136;
+    background-color: #fcfcfc;
+    margin-bottom: 1em;
+}
+
+.todo-cont:hover,
+.todo-cont:focus,
+.todo-cont:active,
+.todo-cont.active {
+    border-color: #f6bf01;
+    color: #fff;
+    background-color: #fec503;
+}
+
+
 .btn-primary {
     border-color: #fed136;
     text-transform: uppercase;
