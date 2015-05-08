@@ -1,2 +1,6 @@
 .container#clear-nav
-  %h1.list-heading= "#{current_user.first_name}'s Lists"
+  %h1.list-heading= "#{@user.first_name}'s Lists"
+  .new-todo-list
+    = render partial: 'todo_lists/form', locals: { user: @user, todo_lists: @todo_lists}
+  .js-todo-list
+    = render @todo_lists

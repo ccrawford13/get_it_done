@@ -11,7 +11,8 @@ class TodoListsController < ApplicationController
 
   def show
     @user = User.find(params[:user_id])
-    @todo_list = @user.todo_lists
+    @todo_lists = @user.todo_lists
+    @todo_list = TodoList.find(params[:id])
   end
   
   respond_to do |format|
