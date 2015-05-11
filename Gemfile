@@ -43,9 +43,13 @@ group :development, :test do
   # RSpec & Capybara Testing
   gem 'rspec-rails'
   gem 'capybara'
+  # JS Testing W/Capybara
+  gem 'capybara-webkit'
   # Test Factories
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+  # Launchy Gem - to open byebug screenshots
+  gem 'launchy'
   # Better Errors Messages
   gem 'better_errors'
   gem 'binding_of_caller'

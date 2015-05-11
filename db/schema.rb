@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150503181554) do
+ActiveRecord::Schema.define(version: 20150508023257) do
+
+  create_table "items", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "todo_list_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "items", ["title"], name: "index_items_on_title"
+  add_index "items", ["todo_list_id"], name: "index_items_on_todo_list_id"
+
+  create_table "todo_lists", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "todo_lists", ["title"], name: "index_todo_lists_on_title"
+  add_index "todo_lists", ["user_id"], name: "index_todo_lists_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"

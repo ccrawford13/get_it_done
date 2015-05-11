@@ -1,0 +1,5 @@
+<% if @todo_list.destroyed? %>
+  $("#todo_list_<%= @todo_list.id %>").fadeOut(255);
+<% else %>
+  $("#todo_list_<%= @todo_list.id %>").prepend("<div class='alert alert-danger'> <%= flash[:error] %> </div");
+<% end %>
