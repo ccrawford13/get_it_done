@@ -42,7 +42,7 @@ a:hover,
 a:focus,
 a:active,
 a.active {
-    color: #fec503;
+    color: #fff;
 }
 
 h1,
@@ -74,7 +74,7 @@ h6 {
 
 .todo-cont {
     border-color: #fed136;
-    background-color: #fcfcfc;
+    background-color: #eee;
     margin-bottom: 1em;
 }
 
@@ -83,10 +83,29 @@ h6 {
 .todo-cont:active,
 .todo-cont.active {
     border-color: #f6bf01;
-    color: #fff;
     background-color: #fec503;
 }
 
+.todo-cont:hover a,
+.todo-cont:focus a,
+.todo-cont:active a,
+.todo-cont.active a {
+    color: #fff;
+}
+
+.todo-title {
+    display: inline-block;
+    position: relative;
+    min-width: 75%;
+}
+
+.delete-item {
+    display: inline-block;
+    position: relative;
+    line-height: 65px;
+    text-align: right;
+    padding-left: 1em;
+}
 
 .btn-primary {
     border-color: #fed136;

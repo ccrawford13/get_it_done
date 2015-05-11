@@ -4,7 +4,7 @@ module UserNav
 # Helper methods to DRY up feature tests
 
   # User Sign In 
-  def user_sign_in
+  def user_sign_in(user)
     visit root_path
     click_link "Sign In"
     fill_in "Email", with: user.email

@@ -5,20 +5,33 @@ class TodoListsController < ApplicationController
 
   def create
     @todo_list = current_user.todo_lists.build( todo_list_params )
-    @user = @todo_list.user
     @todo_list.save
+    @user = @todo_list.user
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
-    @user = User.find(params[:user_id])
-    @todo_lists = @user.todo_lists
+    # @user = User.find(params[:user_id])
+    # @todo_lists = @user.todo_lists
     @todo_list = TodoList.find(params[:id])
+    @items = @todo_list.items
   end
+
+  def destroy
+    @todo_list = TodoList.find(params[:id])
+    @todo_list.destroy
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   
-  respond_to do |format|
-    format.html
-    format.js
-  end
 
   private
 

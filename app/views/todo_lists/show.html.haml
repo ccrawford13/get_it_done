@@ -1,4 +1,7 @@
 .container#clear-nav
-  %h1= @todo_list.title
-  .col-md-4.col-md-offset-6
-    %p.text-muted= @todo_list.created_at
+  %h1.list-heading= @todo_list.title
+  %p.text-muted= @todo_list.created_at
+  .new-todo-items
+    = render partial: 'items/form', locals: { todo_lists: @todo_lists}
+  .js-todo-items
+    = render @items
