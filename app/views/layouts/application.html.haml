@@ -30,11 +30,11 @@
                     = current_user.first_name
                     %ul.dropdown-menu{"aria-labelledby" => "dLabel", :role => "menu"}
                       .li
-                        %a= link_to "My Lists", user_path(current_user)
+                        = link_to "My Lists", user_path(current_user)
                       .li
-                        %a= link_to "Edit User", edit_user_registration_path(current_user)
+                        = link_to "Edit User", edit_user_registration_path(current_user)
                       .li
-                        %a= link_to "Sign Out", destroy_user_session_path, method: :delete
+                        = link_to "Sign Out", destroy_user_session_path, method: :delete
   - if flash[:notice]
     .alert.alert-success
       %button.close{"data-dismiss" => "alert", :type => "button"} ×
