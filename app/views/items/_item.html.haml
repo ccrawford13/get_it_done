@@ -1,0 +1,12 @@
+= div_for(item, class: 'container', id: "item-#{item.id}") do
+  .row
+    .container
+      .col-md-8.col-md-offset-2.todo-cont
+        .col-md-2.mark-complete
+          = link_to "", [item.todo_list, item], :controller => 'items', :action => "update", :id => @item, class: 'glyphicon glyphicon-ok', id: "mark_complete", method: :patch, remote: true
+        .col-md-6.todo-title
+          %h4= item.title
+        .col-md-2.delete-item
+          / = link_to "", [todo_list.item], method: :delete, class: 'glyphicon glyphicon-trash', id: "delete_item", remote: true
+        .col-md-4.col-md-offset-8.created-at
+          %p.text-muted= item.created_at

@@ -1,0 +1,5 @@
+<% if @item.destroyed? %>
+  $("#item_<%= @item.id %>").fadeOut(255);
+<% else %>
+  $("#item_<%= @item.id %>").prepend("<div class='alert alert-danger'> <%= flash[:error] %> </div");
+<% end %>

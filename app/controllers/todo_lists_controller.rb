@@ -15,9 +15,8 @@ class TodoListsController < ApplicationController
   end
 
   def show
-    # @user = User.find(params[:user_id])
-    # @todo_lists = @user.todo_lists
     @todo_list = TodoList.find(params[:id])
+    @user = @todo_list.user
     @items = @todo_list.items
   end
 

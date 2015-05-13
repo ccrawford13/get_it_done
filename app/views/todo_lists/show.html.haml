@@ -2,6 +2,8 @@
   %h1.list-heading= @todo_list.title
   %p.text-muted= @todo_list.created_at
   .new-todo-items
-    = render partial: 'items/form', locals: { todo_lists: @todo_lists}
-  .js-todo-items
-    = render @items
+    = render partial: 'items/form', locals: { todo_list: @todo_list, items: @items }
+  .js-items#incomplete
+    = render @incomplete_items
+  .js-items#complete
+    = render @completed_items

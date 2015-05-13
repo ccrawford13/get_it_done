@@ -1,8 +1,6 @@
 require 'rails_helper'
-require 'factories/user_nav'
 
 describe "Creating todo_list" do
-  include UserNav
   Capybara.javascript_driver = :webkit
   
   subject(:user) { create(:user) }
