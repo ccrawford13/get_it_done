@@ -1,0 +1,6 @@
+<% if @item.mark_complete %>
+  $("#item_<%= @item.id %>").hide();
+  $('.js-items#complete').prepend("<%= escape_javascript(render(@item)) %>");
+  $("#item_<%= @item.id %> h4").wrap("<strike>");
+  $("#item_<%= @item.id %> p").wrap("<strike>");
+<% end %>

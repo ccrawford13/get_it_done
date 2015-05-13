@@ -30,7 +30,7 @@ describe "Todo item crud" do
       end
 
       it "displays #created_at time", js: true do
-        expect( page ).to have_content item.created_at
+        expect( page ).to have_content item.created_at.time.to_formatted_s(:long_ordinal)
       end
     end
 
@@ -55,10 +55,10 @@ describe "Todo item crud" do
     end
 
     it "renders item as #completed", js: true do
-      click_button "mark_complete"
+      click_link "mark_complete"
 
-      within(".incomplete-items") do
-        expect( page ).not_to have_content item.titl
+      within(".complete-items") do
+        expect( page ).to have_content item.title.upcase
       end
     end
   end

@@ -17,7 +17,8 @@ class TodoListsController < ApplicationController
   def show
     @todo_list = TodoList.find(params[:id])
     @user = @todo_list.user
-    @items = @todo_list.items
+    @incomplete_items = @todo_list.items.incomplete_and_ordered
+    @completed_items = @todo_list.items.completed_and_ordered
   end
 
   def destroy

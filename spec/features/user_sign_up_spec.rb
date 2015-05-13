@@ -7,10 +7,7 @@ describe "User sign up" do
   end
 
   context "successful sign up" do
-    it "redirects to root_path" do
-      sign_up_credentials
-      expect( current_path).to eq root_path
-    end
+    let(:user) { create(:user) }
 
     it "sends confirmation email" do
       sign_up_credentials
@@ -64,10 +61,10 @@ describe "User sign up" do
 end
 
 def sign_up_credentials
-  fill_in "First name", with: "John"
-  fill_in "Last name", with: "Smith"
-  fill_in "Email", with: "john@example.com"
-  fill_in "Password", with: "helloworld"
-  fill_in "Password confirmation", with: "helloworld"
+  fill_in "First name", with: user.first_name
+  fill_in "Last name", with: user.last_name
+  fill_in "Email", with: user.email
+  fill_in "Password", with: user.password
+  fill_in "Password confirmation", with: user.password_confirmation
   click_button "Sign Up"
 end

@@ -1,5 +1,5 @@
 <% if @item.valid? %>
-   $('.js-todo-items').prepend("<%= escape_javascript(render(@item)) %>");
+   $('.js-items#incomplete').prepend("<%= escape_javascript(render(@item)) %>");
    $('.new-todo-items').html("<%= escape_javascript(render partial: 'items/form', locals: { todo_list: @todo_list, item: @item }) %>");
  <% else %>
    $('.new-todo-items').prepend("<div class='alert alert-danger'> <%= flash[:error] = "Error Creating Item. Please Try Again" %> </div");
