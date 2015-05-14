@@ -3,7 +3,7 @@
     .container.todo
       .col-md-7.col-md-offset-2.todo-cont
         .col-md-1.mark-complete
-          = link_to "", [item.todo_list, item], :controller => 'items', :action => "update", id: "mark_complete", class: 'glyphicon glyphicon-ok', method: :patch, remote: true
+          = link_to "", [item.todo_list, item], :controller => 'items', :action => "update", id: "toggle_complete", class: 'glyphicon glyphicon-ok', method: :patch, remote: true
         .col-md-10
           - if item[:completed] == true
             .col-md-8.todo-title.complete-items

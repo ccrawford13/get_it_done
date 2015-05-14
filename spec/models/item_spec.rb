@@ -21,12 +21,23 @@ RSpec.describe Item, type: :model do
     end
   end
 
-  describe "Marking item as #complete" do
+  describe "toggle completed status" do
 
     let(:item) { create(:item) }
 
-    it "sets completed to true" do
-      expect{ item.mark_complete }.to change{ item.completed }.from(false).to(true)
+    context "when completed == false" do
+
+      it "sets completed to true" do
+        expect{ item.toggle_completed_status }.to change{ item.completed }.from(false).to(true)
+      end
+    end
+
+    context "when completed == true" do
+
+      it "sets completed to false" do
+        item.update_attributes(completed: true)
+        expect{ item.toggle_completed_status }.to change{ item.completed }.from(true).to(false)
+      end
     end
   end
 end

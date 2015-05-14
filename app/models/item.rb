@@ -12,7 +12,11 @@ class Item < ActiveRecord::Base
   scope :incomplete_and_ordered, -> { incomplete_items.order("created_at DESC") }
   scope :completed_and_ordered, -> { completed_items.order("updated_at DESC") }
 
-  def mark_complete
-    self.update_attributes(completed: true)
+  def toggle_completed_status
+    if self.completed == false
+      self.update_attributes(completed: true)
+    elsif self.completed == true
+      self.update_attributes(completed: false)
+    end
   end
 end

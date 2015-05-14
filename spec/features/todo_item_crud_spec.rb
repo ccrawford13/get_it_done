@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe "Todo item crud" do
   Capybara.javascript_driver = :webkit
+  Capybara.default_wait_time = 5
 
   subject(:user) { create(:user) }
   let(:todo_list) { create(:todo_list, user: user) }
@@ -44,21 +45,50 @@ describe "Todo item crud" do
     end
   end
 
-  describe "Marking todo item as #complete" do
+  describe "Toggle item completed status" do 
+    
+    let(:item) { create(:item) }
+
     before do
       fill_in "title", with: item.title
       click_button "create_item"
     end
 
-    it "displays link to mark as #complete", js: true do
-      expect( page ).to have_selector(:link_or_button, "mark_complete")
+    it "displays link to #toggle_completed_status", js: true do
+      expect( page ).to have_selector(:link_or_button, "toggle_complete")
     end
 
-    it "renders item as #completed", js: true do
-      click_link "mark_complete"
+    context "when item is incomplete" do
 
-      within(".complete-items") do
-        expect( page ).to have_content item.title.upcase
+      it "renders item as #completed", js: true do
+        click_link "toggle_complete"
+
+        within("#complete") do
+          expect( page ).to have_content item.title.upcase
+        end
+      end
+
+      it "displays item #created_at time", js: true do
+        click_link "toggle_complete"
+        expect( page ).to have_content item.created_at.time.to_formatted_s(:long_ordinal)
+      end
+    end
+
+    context "when item is completed" do
+
+      it "renders item as #incomplete", js: true do
+
+        item.update_attributes(completed: true)
+        
+        click_link "toggle_complete"
+        within("#incomplete") do
+          expect( page ).to have_content item.title.upcase
+        end
+      end
+
+      it "displays item #updated_at time", js: true do
+        click_link "toggle_complete"
+        expect( page ).to have_content item.updated_at.time.to_formatted_s(:long_ordinal)
       end
     end
   end

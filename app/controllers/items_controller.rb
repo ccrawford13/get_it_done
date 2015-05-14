@@ -18,11 +18,11 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-    @item.mark_complete
-
+    @item.toggle_completed_status
+    
     respond_to do |format|
       format.html
-      format.js
+      format.js 
     end
   end
 
@@ -47,4 +47,5 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:title)
   end
+
 end
