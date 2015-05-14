@@ -33,6 +33,10 @@ describe "Todo item crud" do
       it "displays #created_at time", js: true do
         expect( page ).to have_content item.created_at.time.to_formatted_s(:long_ordinal)
       end
+
+      it "displays #days_remaining until deletion",js: true do
+        expect( page ).to have_content item.days_remaining
+      end
     end
 
     context "unsuccessful creation" do

@@ -9,12 +9,15 @@
             .col-md-8.todo-title.complete-items
               %strike
                 %h4.text-muted= item.title
-            .col-md-6.created-at
+            .col-md-4.item-details#days-remaining 
+            .col-md-6.item-details#created-at
               %p.text-muted Completed - #{ item.updated_at.time.to_formatted_s(:long_ordinal) }
           - else
             .col-md-6.todo-title.incomplete-items
               %h4= item.title
-            .col-md-6.created-at
-              %p.text-muted Created - #{ item.created_at.time.to_formatted_s(:long_ordinal) }
+            .col-md-4.item-details#days-remaining
+              %p.text-muted #{ item.days_remaining } - Days Remaining 
+            .col-md-6.item-details#created-at
+              %p.text-muted Completed - #{ item.updated_at.time.to_formatted_s(:long_ordinal) }
         .col-md-2.delete-item
           / = link_to "", [todo_list.item], method: :delete, class: 'glyphicon glyphicon-trash', id: "delete_item", remote: true

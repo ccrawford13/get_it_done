@@ -111,9 +111,18 @@ h6 {
 }
 
 
-.created-at {
-    margin-left: 60%;
+#days-remaining {
+    min-width: 40%;
+    text-align: center;
+    padding-top: 1em;
 }
+
+#created-at {
+    min-width: 60%;
+    text-align: center;
+    padding: 1em 0 0 10%;
+}
+
 .mark-complete {
     position: relative;
     line-height: 90px;
