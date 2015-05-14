@@ -68,14 +68,12 @@ h6 {
     background-color: #222;
 }
 
-.todo-cont h4 {
-    padding-top: 1.5em;
-}
-
 .todo-cont {
     border-color: #fed136;
-    background-color: #eee;
+    background-color: rgb(252, 252, 252);
     margin-bottom: 1em;
+    min-width: 65%;
+    margin: 0 0 .75em 16%
 }
 
 .todo-cont:hover,
@@ -86,23 +84,44 @@ h6 {
     background-color: #fec503;
 }
 
+.todo-cont h4 {
+    padding-top: 1.5em;
+    color: #fed136;
+}
+
+.todo-cont:hover h4,
+.todo-cont:focus h4,
+.todo-cont:active h4,
+.todo-cont.active h4{
+    color: #fff;
+}
+
 .todo-cont:hover a,
 .todo-cont:focus a,
 .todo-cont:active a,
-.todo-cont.active a {
+.todo-cont.active a{
     color: #fff;
 }
 
 .todo-title {
     display: inline-block;
     position: relative;
-    min-width: 75%;
+    text-align: center;
+    min-width: 100%;
 }
 
+
+.created-at {
+    margin-left: 60%;
+}
+.mark-complete {
+    position: relative;
+    line-height: 90px;
+}
 .delete-item {
     display: inline-block;
     position: relative;
-    line-height: 65px;
+    line-height: 90px;
     text-align: right;
     padding-left: 1em;
 }

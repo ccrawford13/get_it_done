@@ -1,10 +1,12 @@
 = div_for(todo_list, class: 'container', id: "list-#{todo_list.id}") do
   .row
     .container
-      .col-md-8.col-md-offset-2.todo-cont
-        .col-md-6.todo-title
-          %h4= link_to todo_list.title, todo_list_path(todo_list.user, todo_list)
-        .col-md-2.delete-item
-          = link_to "", [todo_list], method: :delete, class: 'glyphicon glyphicon-trash', id: "delete_list", remote: true
-        .col-md-4.col-md-offset-8.created-at
-          %p.text-muted= todo_list.created_at
+      .col-md-7.col-md-offset-2.todo-cont
+        .col-md-1.delete-item
+          = link_to "", [todo_list.user, todo_list], method: :delete, class: 'glyphicon glyphicon-trash', id: "delete_list", remote: true
+        .col-md-10
+          .col-md-8.todo-title
+            %h4= link_to todo_list.title, user_todo_list_path(todo_list.user, todo_list)
+          .col-md-6.created-at
+            %p.text-muted= todo_list.created_at
+        

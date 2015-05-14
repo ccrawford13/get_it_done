@@ -1,0 +1,11 @@
+<% if @item.completed == true %>
+  $("#item_<%= @item.id %>").hide();
+  $('.js-items#complete').prepend("<%= escape_javascript(render(@item)) %>");
+  $("#item_<%= @item.id %> h4").wrap("<strike>");
+  window.location.reload();
+
+<% elsif @item.completed == false %>
+  $("#item_<%= @item.id %>").hide();
+  $('.js-items#incomplete').prepend("<%= escape_javascript(render(@item)) %>");
+  window.location.reload();
+<% end %>

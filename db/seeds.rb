@@ -26,11 +26,22 @@ users = User.all
 200.times do
   list = TodoList.create!(
     title:         Faker::Lorem.sentence,
-    user:          users.sample,
+    user:          users.sample
   )
 end
+
 lists = TodoList.all
+
+100.times do
+  item = Item.create!(
+    title:        Faker::Lorem.sentence,
+    todo_list:    lists.sample
+  )
+end
+
+items = Item.all
 
 puts "Seeds Finished"
 puts "#{User.count} users created"
 puts "#{TodoList.count} lists created"
+puts "#{Item.count} items created"
