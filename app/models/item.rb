@@ -12,6 +12,11 @@ class Item < ActiveRecord::Base
   scope :incomplete_and_ordered, -> { incomplete_items.order("created_at DESC") }
   scope :completed_and_ordered, -> { completed_items.order("updated_at DESC") }
 
+  # Calculates days remaining till deletion (7 Days from creation)
+  def days_remaining
+    7 - (DateTime.now.to_date - created_at.to_date).to_i
+  end
+
   def toggle_completed_status
     if self.completed == false
       self.update_attributes(completed: true)

@@ -30,6 +30,7 @@ gem 'faker'
 gem 'font-awesome-sass'
 # Figaro for ENV variables
 gem 'figaro'
+gem 'whenever'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

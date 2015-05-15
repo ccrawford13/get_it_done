@@ -40,4 +40,14 @@ RSpec.describe Item, type: :model do
       end
     end
   end
+
+  describe "#time_remaining" do
+
+    let(:item) { create(:item) }
+
+    it "calculates days remaining until deletion" do
+      expect( item.days_remaining ).to eq(7)
+    end
+  end
+
 end
